@@ -39,7 +39,7 @@ module appSvc '../modules/appSvc.bicep' = {
     storageAccountRg: storageAccountRg
     type: appSvcType
   appInsightsId: insightsId ?? sharedInsightsId
-  functionSa: insightsId ?? sharedStorageAccount
+  functionSa: functionSa ?? sharedStorageAccount
   azureConfig: azureConfig
   }
 }
