@@ -121,3 +121,5 @@ resource apiApp 'Microsoft.Web/sites@2020-06-01' = {
         type: 'SystemAssigned'
     }
 }
+
+output appService object = reference(resourceNames[type], '2020-06-01', 'Full')
