@@ -54,7 +54,7 @@ var resourceIDs = { // Variables for Resource IDs
 
 // Resources Section
 resource apiApp 'Microsoft.Web/sites@2020-06-01' = {
-    name: resourceNames.appSvc.api
+    name: resourceNames.appSvc[type]
     location: resourceGroup().location
     kind: 'api'
     properties: {
