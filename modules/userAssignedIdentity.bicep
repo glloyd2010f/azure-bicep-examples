@@ -11,4 +11,4 @@ resource rssName_resource 'Microsoft.ManagedIdentity/userAssignedIdentities@2018
   location: resourceGroup().location
 }
 
-output appService object = reference(rssName, '2018-11-30', 'Full')
+output userAssignedIdentity object = reference(rssName, '2018-11-30', 'Full')
