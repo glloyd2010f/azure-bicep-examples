@@ -1,4 +1,4 @@
-param rssPrefix string = newGuid()
+param namePrefix string = newGuid()
 param appSvcType string {
   default: 'api'
   allowed: [
@@ -33,7 +33,7 @@ var azureConfig=  {
 module appSvc '../modules/appSvc.bicep' = {
   name: 'appSvc01'
   params:{
-    appSvcNamePrefix: rssPrefix
+    appSvcNamePrefix: namePrefix
     aspName: aspName
     aspRg: aspRg
     storageAccountRg: storageAccountRg
