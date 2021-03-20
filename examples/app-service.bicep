@@ -33,7 +33,7 @@ var azureConfig=  {
 module appSvc '../modules/appSvc.bicep' = {
   name: 'appSvc01'
   params:{
-    rssPrefix: rssPrefix
+    appSvcNamePrefix: rssPrefix
     aspName: aspName
     aspRg: aspRg
     storageAccountRg: storageAccountRg
