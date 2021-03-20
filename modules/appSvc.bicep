@@ -1,5 +1,5 @@
 // Parameters Section
-param rssPrefix string {
+param appSvcNamePrefix string {
     minLength: 2
     maxLength: 56
 }
@@ -19,15 +19,15 @@ param functionSa string
 param azureConfig object
 
 // Variables Section
-var environment =  toLower(split(rssPrefix, '-')[2])
-var application =  toLower(split(rssPrefix, '-')[3])
-var serviceName =  toLower(split(rssPrefix, '-')[4])
+var environment =  toLower(split(appSvcNamePrefix, '-')[2])
+var application =  toLower(split(appSvcNamePrefix, '-')[3])
+var serviceName =  toLower(split(appSvcNamePrefix, '-')[4])
 var resourceNames = { // Variables for Resource Names
   appSvc: {
-    api: '${rssPrefix}-Api'
-    web: '${rssPrefix}-Web'
-    function: '${rssPrefix}-Fun'
-    container: '${rssPrefix}-Wac'
+    api: '${appSvcNamePrefix}-Api'
+    web: '${appSvcNamePrefix}-Web'
+    function: '${appSvcNamePrefix}-Fun'
+    container: '${appSvcNamePrefix}-Wac'
   }
 }
 var appServiceConfig = {
@@ -53,7 +53,7 @@ var resourceIDs = { // Variables for Resource IDs
 }
 
 // Resources Section
-resource apiApp 'Microsoft.Web/sites@2020-06-01' = {
+resource appSvc 'Microsoft.Web/sites@2020-06-01' = {
     name: resourceNames.appSvc[type]
     location: resourceGroup().location
     kind: 'api'
@@ -122,4 +122,4 @@ resource apiApp 'Microsoft.Web/sites@2020-06-01' = {
     }
 }
 
-output appService object = reference(resourceNames[type], '2020-06-01', 'Full')
+output appService object = appSvc
