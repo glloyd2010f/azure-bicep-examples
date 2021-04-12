@@ -1,34 +1,23 @@
-param sqlServerName string {
-  minLength: 1
-  maxLength: 63
-  metadata: {
-    description: 'Name of the Azure SQL Database'
-  }
-}
-param dbaUsername string {
-  metadata: {
-    description: 'User Account for the default database account'
-  }
-  secure: true
-}
-param dbaPassword string {
-  metadata: {
-    description: 'Password for the default database account'
-  }
-  secure: true
-  default: newGuid()
-}
-param minimalTlsVersion string {
-  allowed: [
-    '1.0'
-    '1.1'
-    '1.2'
-  ]
-  metadata: {
-    description: 'Minimal TLS version'
-  }
-  default: '1.2'
-}
+@minLength(1)
+@maxLength(63)
+@description('Name of the Azure SQL Database')
+param sqlServerName string
+
+@secure()
+@description('User Account for the default database account')
+param dbaUsername string
+
+@secure()
+@description('Password for the default database account')
+param dbaPassword string
+
+@allowed([
+  '1.0'
+  '1.1'
+  '1.2'
+])
+@description('Minimal TLS version')
+param minimalTlsVersion string  = '1.2'
 
 var tenantId = subscription().tenantId
 var sqlServerConfig = {

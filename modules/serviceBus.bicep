@@ -1,32 +1,23 @@
-param svcBusName string {
-  minLength: 6
-  maxLength: 50
-  metadata: {
-    description: 'Name of the Azure Service Bus'
-  }
-}
-param sku string {
-  allowed: [
-    'Basic'
-    'Standard'
-    'Premium'
-  ]
-  metadata: {
-    description: 'Azure Service Bus Namespace SKU Name'
-  }
-  default: 'Standard'
-}
-param capacity int {
-  allowed: [
-    1
-    2
-    4
-  ]
-  metadata: {
-    description: 'Messaging units for the selected Azure Service Bus Tier'
-  }
-  default: 1
-}
+@minLength(6)
+@maxLength(50)
+@description('Name of the Azure Service Bus')
+param svcBusName string
+
+@allowed([
+  'Basic'
+  'Standard'
+  'Premium'
+])
+@description('Azure Service Bus Namespace SKU Name')
+param sku string = 'Standard'
+
+@allowed([
+  1
+  2
+  4
+])
+@description('Messaging units for the selected Azure Service Bus Tier')
+param capacity int = 1
 
 var serviceBusConfig = {
   sku: {

@@ -46,7 +46,7 @@ var appInsightsConfig = {
   publicNetworkAccessForQuery: publicQueryAccess
 }
 
-resource rssName_resource 'Microsoft.Insights/components@2020-02-02-preview' = {
+resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
   name: rssName
   location: resourceGroup().location
   kind: appInsightsConfig.applicationType
@@ -61,5 +61,5 @@ resource rssName_resource 'Microsoft.Insights/components@2020-02-02-preview' = {
   }
 }
 
-output instrumentationKey string = reference(rssName).InstrumentationKey
-output appInsights object = reference(rssName, '2020-02-02-preview', 'Full')
+output instrumentationKey string = appInsights.properties.InstrumentationKey
+output appInsights object = appInsights
