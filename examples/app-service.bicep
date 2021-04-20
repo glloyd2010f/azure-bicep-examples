@@ -1,13 +1,12 @@
 param namePrefix string = newGuid()
-param appSvcType string {
-  default: 'api'
-  allowed: [
-    'api'
-    'function'
-    'web'
-    'container'
-  ]
-}
+
+@allowed([
+  'api'
+  'function'
+  'web'
+  'container'
+])
+param appSvcType string = 'api'
 param aspName string = newGuid()
 param aspRg string = newGuid()
 param storageAccountRg string = newGuid()
